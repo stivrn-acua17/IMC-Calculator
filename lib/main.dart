@@ -20,7 +20,8 @@ class MainApp extends StatelessWidget {
         ),
 
         backgroundColor: AppColors.background,
-        body: ImcHomeScreen(),
+        body: 
+          ImcHomeScreen(),
       ),
     );
   }
