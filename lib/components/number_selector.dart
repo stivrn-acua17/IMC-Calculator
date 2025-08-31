@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imc_calculator/core/app_color.dart';
+import 'package:imc_calculator/core/decoration_styles.dart';
 import 'package:imc_calculator/core/text_styles.dart';
 
 class NumberSelector extends StatefulWidget {
@@ -25,10 +26,7 @@ class _NumberSelectorState extends State<NumberSelector> {
   Widget build(BuildContext context) {
     return Container(
       
-      decoration: BoxDecoration(
-        color: AppColors.backgroundComponent,
-        borderRadius: BorderRadius.circular(16)
-      ),
+      decoration: DecorationStyles.contain,
       
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -36,13 +34,13 @@ class _NumberSelectorState extends State<NumberSelector> {
           
           children: [
             Text(widget.title, style: TextStyles.bodyText),
-            Text(widget.value.toString(),
-              style: TextStyle(color: Colors.white, fontSize: 38, fontWeight: FontWeight.bold)),  
+            Text(widget.value.toString(), style: TextStyles.titleText),  
             
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton(
+                  heroTag: null,
                   onPressed: (){
                     widget.onDecreament();
                   }, 
@@ -53,6 +51,7 @@ class _NumberSelectorState extends State<NumberSelector> {
                 
                 SizedBox(width: 16),
                 FloatingActionButton(
+                  heroTag: null,
                   onPressed: (){
                     widget.onIncrement();
                   }, 

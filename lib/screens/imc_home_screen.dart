@@ -3,6 +3,7 @@ import 'package:imc_calculator/components/gender_selector.dart';
 import 'package:imc_calculator/components/height_selector.dart';
 import 'package:imc_calculator/components/number_selector.dart';
 import 'package:imc_calculator/core/app_color.dart';
+import 'package:imc_calculator/core/button_styles.dart';
 import 'package:imc_calculator/core/text_styles.dart';
 import 'package:imc_calculator/screens/imc_result_screen.dart';
 
@@ -52,15 +53,13 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
             height: 60,
             width: double.infinity,
             child: ElevatedButton(onPressed: (){
-                /*Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ImcResultScreen())
-                  //MaterialPageRoute(builder: (context){return ImcResultScreen(); })
-                );*/
-              }, 
-              style: ButtonStyle(
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-                  backgroundColor: MaterialStateProperty.all(AppColors.primary)), 
-              child: Text('Calcular', style: TextStyles.bodyText))),
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ImcResultScreen(height: selectedHeight, weight: selectedWeight,))
+                //MaterialPageRoute(builder: (context){return ImcResultScreen(); })
+              );
+            }, 
+            style: ButtonStyles.next, 
+            child: Text('Calcular', style: TextStyles.bodyText))),
         )
       ],
     );

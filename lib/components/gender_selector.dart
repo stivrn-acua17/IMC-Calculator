@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:imc_calculator/components/gender_option.dart';
-import 'package:imc_calculator/core/app_color.dart';
-import 'package:imc_calculator/core/text_styles.dart';
 
 class GenderSelector extends StatefulWidget {
   const GenderSelector({super.key});
