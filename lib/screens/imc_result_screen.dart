@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:imc_calculator/core/app_color.dart';
 import 'package:imc_calculator/core/button_styles.dart';
 import 'package:imc_calculator/core/decoration_styles.dart';
@@ -20,19 +19,20 @@ class ImcResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: toolbarResult(),
-      body: bodyResult()
+      body: bodyResult(context)
     );
   }
 
-  Padding bodyResult() {
-    double imcResult = weight/(height*height);
+  Padding bodyResult(BuildContext context) {
+    double fixedHeight = height/100;
+    double imcResult = weight/(fixedHeight * fixedHeight);
     
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Tu resultado', style: TextStyles.titleText),
+          const Text('Tu resultado', style: TextStyles.titleText),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 32),
@@ -40,7 +40,19 @@ class ImcResultScreen extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity,
                 decoration: DecorationStyles.contain,
-                child: Text(imcResult.toString(), style: TextStyles.bodyText),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(getTitleImc(imcResult), style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: getColorByImc(imcResult))),
+                    Text(imcResult.toStringAsFixed(2), 
+                        style: const TextStyle(fontSize: 76, color: Colors.white, fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Text(getDescriptionImc(imcResult), 
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white), textAlign: TextAlign.center),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -48,8 +60,10 @@ class ImcResultScreen extends StatelessWidget {
           SizedBox(
             height: 60,
             width: double.infinity,
-            child: ElevatedButton(onPressed: (){}, style: ButtonStyles.next,
-              child: Text('Finalizar', style: TextStyles.bodyText)
+            child: ElevatedButton(onPressed: (){
+              Navigator.pop(context);
+            }, 
+            style: ButtonStyles.next, child: const Text('Finalizar', style: TextStyles.bodyText)
             ),
           )
         ]
@@ -59,9 +73,36 @@ class ImcResultScreen extends StatelessWidget {
 
   AppBar toolbarResult() {
     return AppBar(
-      title: Text('Resultado'),
+      title: const Text('Resultado'),
       backgroundColor: AppColors.primary,
       foregroundColor: Colors.white,
     );
+  }
+  
+  Color getColorByImc(double imcResult) {
+    return switch(imcResult){
+      < 18.5 => Colors.blue,  //IMC Bajo
+      < 24.9 => Colors.green,  //IMC Normal
+      < 29.99 => Colors.orange,  //Sobrepeso
+      _ => Colors.red  //Obesidad
+    };
+  }
+
+  String getTitleImc(double imcResult) {
+    return switch(imcResult){
+      < 18.5 => 'IMC Bajo',  
+      < 24.9 => 'IMC Normal',  
+      < 29.99 => 'Sobrepeso',  
+      _ => 'Obesidad'  
+    };
+  }
+
+  String getDescriptionImc(double imcResult) {
+    return switch(imcResult){
+      < 18.5 => 'Tu peso está por debajo de lo recomendado.',  
+      < 24.9 => 'Tu peso está en el rango saludable.',  
+      < 29.99 => 'Tienes sobrepeso, cuida tu alimentación.', 
+      _ => 'Tienes obesidad, consulta con un especialista.'  
+    };
   }
 }

@@ -44,20 +44,20 @@ class _NumberSelectorState extends State<NumberSelector> {
                   onPressed: (){
                     widget.onDecreament();
                   }, 
-                  shape: CircleBorder(), 
+                  shape: const CircleBorder(), 
                   backgroundColor: AppColors.primary, 
-                  child: Icon(Icons.remove, color: Colors.white)
+                  child: const Icon(Icons.remove, color: Colors.white)
                 ), 
                 
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 FloatingActionButton(
                   heroTag: null,
                   onPressed: (){
                     widget.onIncrement();
                   }, 
-                  shape: CircleBorder(), 
+                  shape: const CircleBorder(), 
                   backgroundColor: AppColors.primary, 
-                  child: Icon(Icons.add, color: Colors.white)
+                  child: const Icon(Icons.add, color: Colors.white)
                 )  
               ]
             )

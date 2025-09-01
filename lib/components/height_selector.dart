@@ -27,8 +27,8 @@ class _HeightSelectorState extends State<HeightSelector> {
         decoration: DecorationStyles.contain,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
+            const Padding(
+              padding: EdgeInsets.only(top: 8),
               child: Text('ALTURA', style: TextStyles.bodyText),
             ),
             Text('${widget.height.toStringAsFixed(0)} cm', style: TextStyles.titleText),

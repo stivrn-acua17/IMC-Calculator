@@ -14,13 +14,13 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Imc Calculator'), 
+          title: const Text('Imc Calculator'), 
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
         ),
 
         backgroundColor: AppColors.background,
-        body: ImcHomeScreen(),
+        body: const ImcHomeScreen(),
       ),
     );
   }

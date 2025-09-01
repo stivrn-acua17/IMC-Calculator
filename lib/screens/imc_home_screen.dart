@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:imc_calculator/components/gender_selector.dart';
 import 'package:imc_calculator/components/height_selector.dart';
 import 'package:imc_calculator/components/number_selector.dart';
-import 'package:imc_calculator/core/app_color.dart';
 import 'package:imc_calculator/core/button_styles.dart';
 import 'package:imc_calculator/core/text_styles.dart';
 import 'package:imc_calculator/screens/imc_result_screen.dart';
@@ -23,7 +22,7 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GenderSelector(),
+        const GenderSelector(),
         HeightSelector(height: selectedHeight, 
           onHeightChange: (newHeight){ setState(() { selectedHeight = newHeight; }); }
         ),
@@ -37,7 +36,7 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
                 onIncrement: (){ setState(() { selectedAge++; }); }
               )),
               
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(child: NumberSelector(title: 'Peso', value: selectedWeight, 
                 onDecreament: (){ setState(() { selectedWeight--; }); },
                 onIncrement: (){ setState(() { selectedWeight++; }); }
@@ -46,7 +45,7 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
           ),
         ),
 
-        Spacer(),
+        const Spacer(),
         Padding(
           padding: const EdgeInsets.all(16),
           child: SizedBox(
@@ -59,7 +58,7 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
               );
             }, 
             style: ButtonStyles.next, 
-            child: Text('Calcular', style: TextStyles.bodyText))),
+            child: const Text('Calcular', style: TextStyles.bodyText))),
         )
       ],
     );
